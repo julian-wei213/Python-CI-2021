@@ -1,4 +1,4 @@
-from qbay.models import register, login
+from qbnb.models import register, login
 
 
 def test_r1_7_user_register():

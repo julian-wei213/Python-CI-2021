@@ -1,5 +1,5 @@
 import os
-from qbay import app
+from qbnb import app
 
 '''
 This file defines what to do BEFORE running any test cases:

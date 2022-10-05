@@ -1,5 +1,6 @@
-from qbay import app
+from qbnb import app
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 '''
@@ -22,9 +23,28 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+class Listing(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80))
+    description = db.Column(db.String(2000))
+    price = db.Column(db.Integer, nullable=False)
+    last_modified_date = db.Column(db.Datetime, default=datetime.utcnow)
+    owner_id = db.Column(db.Integer, db.ForeignKey('owner.id'), nullable=False)
+    owner = db.relationship('Listing', backref=db.backref('listings', lazy=True))
+
+    def __repr__(self) -> str:
+        return '<Listing %r>' % self.title
+
+
 
 # create all tables
 db.create_all()
+
+def create_listing(title, description, price, owner_id):
+    pass
+
+def update_listing():
+    pass
 
 
 def register(name, email, password):
